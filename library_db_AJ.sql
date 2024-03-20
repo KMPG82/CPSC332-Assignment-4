@@ -3,11 +3,19 @@ CREATE DATABASE Library;
 
 USE Library;
 
+CREATE TABLE PUBLISHER (
+    Name VARCHAR(30),
+    Address VARCHAR(50),
+    Phone VARCHAR(15),
+    PRIMARY KEY (Name)
+);
+
 CREATE TABLE BOOK (
     Book_id INT,
     Title VARCHAR(50) NOT NULL,
     Publisher_name VARCHAR(30) NOT NULL,
-    PRIMARY KEY (Book_id)
+    PRIMARY KEY (Book_id),
+	FOREIGN KEY (Publisher_name) REFERENCES PUBLISHER(Name)
 );
 
 CREATE TABLE BOOK_AUTHORS (
@@ -15,13 +23,6 @@ CREATE TABLE BOOK_AUTHORS (
     Author_name VARCHAR(30) NOT NULL,
     PRIMARY KEY (Book_id, Author_name),
     FOREIGN KEY (Book_id) REFERENCES BOOK(Book_id)
-);
-
-CREATE TABLE PUBLISHER (
-    Name VARCHAR(30),
-    Address VARCHAR(50),
-    Phone VARCHAR(15),
-    PRIMARY KEY (Name)
 );
 
 CREATE TABLE LIBRARY_BRANCH (
